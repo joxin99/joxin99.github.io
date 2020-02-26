@@ -5,15 +5,19 @@
   
 
   
-  <title>Hexo</title>
+  <title>Node.js学习笔记(一) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="1.入门 -为什么学Node.js  -Node.js是一个服务器(服务端)  -利用javascript进行编程  -js运行时环境 解析执行js代码 以前需要浏览器才能运行 现在可以脱离  -理解以便于配合服务端人员进行协同开发 -Node.js中的javascript  -没有DOM BOM  -EcmaScript  -在Node这个环境中为JS提供一些服务器级别的操作API    如：文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js学习笔记(一)">
+<meta property="og:url" content="http://yoursite.com/2020/02/25/node.js/node.js-1/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.入门 -为什么学Node.js  -Node.js是一个服务器(服务端)  -利用javascript进行编程  -js运行时环境 解析执行js代码 以前需要浏览器才能运行 现在可以脱离  -理解以便于配合服务端人员进行协同开发 -Node.js中的javascript  -没有DOM BOM  -EcmaScript  -在Node这个环境中为JS提供一些服务器级别的操作API    如：文">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-02-26T11:44:37.665Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Node.js学习笔记(一)">
+<meta name="twitter:description" content="1.入门 -为什么学Node.js  -Node.js是一个服务器(服务端)  -利用javascript进行编程  -js运行时环境 解析执行js代码 以前需要浏览器才能运行 现在可以脱离  -理解以便于配合服务端人员进行协同开发 -Node.js中的javascript  -没有DOM BOM  -EcmaScript  -在Node这个环境中为JS提供一些服务器级别的操作API    如：文">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-node.js/node.js-1" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-node.js/node.js-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/02/25/node.js/node.js-1/" class="article-date">
   <time datetime="2020-02-25T07:12:11.000Z" itemprop="datePublished">2020-02-25</time>
@@ -75,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/25/node.js/node.js-1/">Node.js学习笔记(一)</a>
+    <h1 class="article-title" itemprop="name">
+      Node.js学习笔记(一)
     </h1>
   
 
@@ -107,105 +109,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-newone" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/11/newone/" class="article-date">
-  <time datetime="2019-10-11T09:58:02.000Z" itemprop="datePublished">2019-10-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/11/newone/">新建一篇文章</a>
-    </h1>
+    <a href="/2019/10/11/newone/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">新建一篇文章</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.附上参考地址：<br><a href="https://segmentfault.com/a/1190000017986794#articleHeader7" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017986794#articleHeader7</a></p>
-<p>2.先前已经建立了博客 但是还没来得及写文章 荒废已久 完全记不起自己到哪一步了 几乎是从头再来过 研究了一会 便记录下这回的步骤吧</p>
-<p>3.发布文章的步骤:<br>  (1) 终端里 ls 查看所有文件 cd myblog 到目录下开始运行一系列指令<br>  (2) hexo new ‘新建一篇文章’<br>  (3) 在 source/_posts 目录下查看此文章 进行编辑<br>  (4) 输入 hexo g 之后 输入 hexo s  可以在本地localhost:4000查看到文章<br>      <img src="/2019/10/11/newone/pic1.jpg" title="This is an image"><br>  (5) 但是在joxin.github.io上还未能查看 因此需要将其推送到github上保存发布<br>  (6) 输入 hexo clean  接着输入 hexo g -d 部署到站点上 便可以在博客上看到新发布的文章了<br>      <img src="/2019/10/11/newone/pic2.jpg" title="This is an image"></p>
-<p>4.那么如何在文章中插入图片来解释步骤呢<br>  (1) 在_config.yml 文件中找到post_asset_folder 将其设置为true<br>  (2) 在source/_post目录下 新建一个和文章同名的文件夹 如文章为 one.md  文件夹则为 one 并将所需的图片 pic.jpg 放入文件夹中<br>  (3) 在文章需要插图的地方 新增一句 </p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img pic.jpg This is an image %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>  (4) 保存 即可在文章里看到从本地引入的图片 以及在博客首页中看到<br>  (5) 如果不想让图片在首页中呈现 那么引入的方式可以为  </p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](pic.jpg)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/11/newone/" data-id="ck73972xv0001m9pfm3lvixpx" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/11/hello-world/" class="article-date">
-  <time datetime="2019-10-11T08:27:14.927Z" itemprop="datePublished">2019-10-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/11/hello-world/" data-id="ck73972xq0000m9pf3zxuxm62" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
