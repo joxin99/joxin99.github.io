@@ -5,23 +5,17 @@
   
 
   
-  <title>新建一篇文章 | Hexo</title>
+  <title>React学习笔记 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.附上参考地址：https://segmentfault.com/a/1190000017986794#articleHeader7 2.先前已经建立了博客 但是还没来得及写文章 荒废已久 完全记不起自己到哪一步了 几乎是从头再来过 研究了一会 便记录下这回的步骤吧 3.发布文章的步骤:  (1) 终端里 ls 查看所有文件 cd myblog 到目录下开始运行一系列指令  (2) hexo n">
-<meta name="keywords" content="hexo">
+  <meta name="keywords" content="React">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新建一篇文章">
-<meta property="og:url" content="http://yoursite.com/2019/10/11/newone/index.html">
+<meta property="og:title" content="React学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/10/11/react-learning1/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.附上参考地址：https://segmentfault.com/a/1190000017986794#articleHeader7 2.先前已经建立了博客 但是还没来得及写文章 荒废已久 完全记不起自己到哪一步了 几乎是从头再来过 研究了一会 便记录下这回的步骤吧 3.发布文章的步骤:  (1) 终端里 ls 查看所有文件 cd myblog 到目录下开始运行一系列指令  (2) hexo n">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/10/11/newone/pic1.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/10/11/newone/pic2.jpg">
-<meta property="og:updated_time" content="2020-03-02T11:52:14.917Z">
+<meta property="og:updated_time" content="2020-03-02T11:52:00.899Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="新建一篇文章">
-<meta name="twitter:description" content="1.附上参考地址：https://segmentfault.com/a/1190000017986794#articleHeader7 2.先前已经建立了博客 但是还没来得及写文章 荒废已久 完全记不起自己到哪一步了 几乎是从头再来过 研究了一会 便记录下这回的步骤吧 3.发布文章的步骤:  (1) 终端里 ls 查看所有文件 cd myblog 到目录下开始运行一系列指令  (2) hexo n">
-<meta name="twitter:image" content="http://yoursite.com/2019/10/11/newone/pic1.jpg">
+<meta name="twitter:title" content="React学习笔记">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -68,9 +62,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-newone" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-react-learning1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/10/11/newone/" class="article-date">
+    <a href="/2019/10/11/react-learning1/" class="article-date">
   <time datetime="2019-10-11T09:58:02.000Z" itemprop="datePublished">2019-10-11</time>
 </a>
     
@@ -82,7 +76,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      新建一篇文章
+      React学习笔记
     </h1>
   
 
@@ -90,23 +84,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.附上参考地址：<br><a href="https://segmentfault.com/a/1190000017986794#articleHeader7" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017986794#articleHeader7</a></p>
-<p>2.先前已经建立了博客 但是还没来得及写文章 荒废已久 完全记不起自己到哪一步了 几乎是从头再来过 研究了一会 便记录下这回的步骤吧</p>
-<p>3.发布文章的步骤:<br>  (1) 终端里 ls 查看所有文件 cd myblog 到目录下开始运行一系列指令<br>  (2) hexo new ‘新建一篇文章’<br>  (3) 在 source/_posts 目录下查看此文章 进行编辑<br>  (4) 输入 hexo g 之后 输入 hexo s  可以在本地localhost:4000查看到文章<br>      <img src="/2019/10/11/newone/pic1.jpg" title="This is an image"><br>  (5) 但是在joxin.github.io上还未能查看 因此需要将其推送到github上保存发布<br>  (6) 输入 hexo clean  接着输入 hexo g -d 部署到站点上 便可以在博客上看到新发布的文章了<br>      <img src="/2019/10/11/newone/pic2.jpg" title="This is an image"></p>
-<p>4.那么如何在文章中插入图片来解释步骤呢<br>  (1) 在_config.yml 文件中找到post_asset_folder 将其设置为true<br>  (2) 在source/_post目录下 新建一个和文章同名的文件夹 如文章为 one.md  文件夹则为 one 并将所需的图片 pic.jpg 放入文件夹中<br>  (3) 在文章需要插图的地方 新增一句 </p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img pic.jpg This is an image %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>  (4) 保存 即可在文章里看到从本地引入的图片 以及在博客首页中看到<br>  (5) 如果不想让图片在首页中呈现 那么引入的方式可以为  </p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](pic.jpg)</span><br></pre></td></tr></table></figure>
-
-
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/11/newone/" data-id="ck7aem7fx000110pf50rwxtyn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/11/react-learning1/" data-id="ck7aem7g7000510pfiyeyz9v3" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
 
     </footer>
   </div>
@@ -114,19 +99,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/02/25/node.js-4/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/11/newone/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Node.js学习笔记(四)
+          新建一篇文章
         
       </div>
     </a>
   
   
-    <a href="/2019/10/11/react-learning1/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/10/11/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">React学习笔记</div>
+      <div class="article-nav-title">Hello World</div>
     </a>
   
 </nav>
