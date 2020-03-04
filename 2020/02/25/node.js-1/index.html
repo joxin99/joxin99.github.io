@@ -7,19 +7,19 @@
   
   <title>Node.js学习笔记(一) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.入门 -为什么学Node.js  -Node.js是一个服务器(服务端)  -利用javascript进行编程  -js运行时环境 解析执行js代码 以前需要浏览器才能运行 现在可以脱离  -理解以便于配合服务端人员进行协同开发 -Node.js中的javascript  -没有DOM BOM  -EcmaScript  -在Node这个环境中为JS提供一些服务器级别的操作API    如：文">
+  <meta name="description" content="1.入门-为什么学Node.js  -Node.js是一个服务器(服务端)  -利用javascript进行编程  -js运行时环境 解析执行js代码 以前需要浏览器才能运行 现在可以脱离  -理解以便于配合服务端人员进行协同开发 -Node.js中的javascript  -没有DOM BOM  -EcmaScript  -在Node这个环境中为JS提供一些服务器级别的操作API    如：文件">
 <meta name="keywords" content="Node.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node.js学习笔记(一)">
 <meta property="og:url" content="http://yoursite.com/2020/02/25/node.js-1/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.入门 -为什么学Node.js  -Node.js是一个服务器(服务端)  -利用javascript进行编程  -js运行时环境 解析执行js代码 以前需要浏览器才能运行 现在可以脱离  -理解以便于配合服务端人员进行协同开发 -Node.js中的javascript  -没有DOM BOM  -EcmaScript  -在Node这个环境中为JS提供一些服务器级别的操作API    如：文">
+<meta property="og:description" content="1.入门-为什么学Node.js  -Node.js是一个服务器(服务端)  -利用javascript进行编程  -js运行时环境 解析执行js代码 以前需要浏览器才能运行 现在可以脱离  -理解以便于配合服务端人员进行协同开发 -Node.js中的javascript  -没有DOM BOM  -EcmaScript  -在Node这个环境中为JS提供一些服务器级别的操作API    如：文件">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2020/02/25/node.js-1/liulanqishuru.png">
-<meta property="og:updated_time" content="2020-03-02T11:52:40.079Z">
+<meta property="og:updated_time" content="2020-03-03T13:38:37.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js学习笔记(一)">
-<meta name="twitter:description" content="1.入门 -为什么学Node.js  -Node.js是一个服务器(服务端)  -利用javascript进行编程  -js运行时环境 解析执行js代码 以前需要浏览器才能运行 现在可以脱离  -理解以便于配合服务端人员进行协同开发 -Node.js中的javascript  -没有DOM BOM  -EcmaScript  -在Node这个环境中为JS提供一些服务器级别的操作API    如：文">
+<meta name="twitter:description" content="1.入门-为什么学Node.js  -Node.js是一个服务器(服务端)  -利用javascript进行编程  -js运行时环境 解析执行js代码 以前需要浏览器才能运行 现在可以脱离  -理解以便于配合服务端人员进行协同开发 -Node.js中的javascript  -没有DOM BOM  -EcmaScript  -在Node这个环境中为JS提供一些服务器级别的操作API    如：文件">
 <meta name="twitter:image" content="http://yoursite.com/2020/02/25/node.js-1/liulanqishuru.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -89,8 +89,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>1.入门</strong></p>
-<p><strong>-为什么学Node.js</strong><br>  -Node.js是一个服务器(服务端)<br>  -利用javascript进行编程<br>  -js运行时环境 解析执行js代码 以前需要浏览器才能运行 现在可以脱离<br>  -理解以便于配合服务端人员进行协同开发</p>
+        <h1 id="1-入门"><a href="#1-入门" class="headerlink" title="1.入门"></a>1.入门</h1><p><strong>-为什么学Node.js</strong><br>  -Node.js是一个服务器(服务端)<br>  -利用javascript进行编程<br>  -js运行时环境 解析执行js代码 以前需要浏览器才能运行 现在可以脱离<br>  -理解以便于配合服务端人员进行协同开发</p>
 <p><strong>-Node.js中的javascript</strong><br>  -没有DOM BOM<br>  -EcmaScript<br>  -在Node这个环境中为JS提供一些服务器级别的操作API<br>    如：文件读写<br>    网络服务的构建<br>    网络通信<br>    http服务器…等</p>
 <p><strong>-Node.js特性</strong><br>  -event-driven事件驱动<br>  -non-bocking I/O model 非阻塞IO模型<br>  -lightweight and efficient</p>
 <p><strong>-Node.js包管理工具</strong>——npm最大的开源库<br>  -绝大多数的js相关包都存放在npm上 方便使用</p>
@@ -101,8 +100,7 @@
 <p>  于是我百度了一下，参考这一个<a href="https://www.cnblogs.com/xinpureZhu/p/6088133.html" target="_blank" rel="noopener">https://www.cnblogs.com/xinpureZhu/p/6088133.html</a><br>  发现用 nvm ls 查到的都是node版本号 因此 输入 nvm install 13.9.0 居然安装node成功了<br>  成功标志为：<br>    1.在终端输入n 也能返回版本号13.9.0<br>    2.输入node -v返回版本号13.9.0<br>    3.输入which node 返回/usr/local/bin/node<br>  不过以上代码区的问题仍然存在<br>  (此处先收藏一个nvm的命令行说明网址：<a href="https://www.cnblogs.com/gaozejie/p/10689742.html" target="_blank" rel="noopener">https://www.cnblogs.com/gaozejie/p/10689742.html</a>)</p>
 <p>  继续百度  发现了<a href="https://blog.csdn.net/A_LWIEUI_Learn/article/details/88653493" target="_blank" rel="noopener">https://blog.csdn.net/A_LWIEUI_Learn/article/details/88653493</a>  其中有一个命令行说：npm install -g nvm  让我意识到可能删除node旧版本的文件时把nvm也给删了<br>    -于是我重新安装了 npm install -g nvm<br>    -继续安装稳定版本的node  输入 nvm stable<br>    -顺利安装 没有问题 也不再提示 “nvm install N/A”<br>  nvm和n都是node版本管理工具 </p>
 <p>接着我发现 随着node的重装 我的hexo命令也没法用了 只好重新安了一遍 步骤如下：<br>=输入npm i -g hexo<br>=输入hexo -v 查看安装成败<br>=打开我博客的文件夹 cd myblog<br>=在文件夹下 npm install<br>于是hexo又能正常使用了<br><strong>结束踩坑时间 继续nodejs学习</strong></p>
-<p><strong>2.简单应用</strong></p>
-<p><strong>-Helloworld一个简单的例子</strong><br>  新建一个helloworld.js文件<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var foo = <span class="string">'hellow world'</span></span><br><span class="line">console.log(foo)</span><br></pre></td></tr></table></figure></p>
+<h1 id="2-简单应用"><a href="#2-简单应用" class="headerlink" title="2.简单应用"></a>2.简单应用</h1><p><strong>-Helloworld一个简单的例子</strong><br>  新建一个helloworld.js文件<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var foo = <span class="string">'hellow world'</span></span><br><span class="line">console.log(foo)</span><br></pre></td></tr></table></figure></p>
 <p>  在命令行定位到文件所在位置 输入：node helloworld.js  即可在命令行窗口输出结果 <strong>文件名不要用node.js或者中文来命名</strong><br>  在node中采用EcmaScript进行编码 没有BOM DOM 和浏览器中的js不一样<br>  在浏览器中可以输出如图所示<br>  <img src="/2020/02/25/node.js-1/liulanqishuru.png" title="This is an image"><br>  但是如果是建立一个js文件中输入以下内容 则node 文件名之后会报错<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(window)</span><br><span class="line">console.log(document)</span><br></pre></td></tr></table></figure></p>
 <p><strong>-用require引入模块 模块作用域</strong><br>读写自己编写的文件模块a.js b.js c.js<br>  a.js文件如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(<span class="string">'a start'</span>)</span><br><span class="line">require(<span class="string">'./b.js'</span>)</span><br><span class="line">console.log(<span class="string">'a end'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>  b.js文件如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(<span class="string">'b start'</span>)</span><br><span class="line">require(<span class="string">'./c.js'</span>)</span><br><span class="line">console.log(<span class="string">'b end'</span>)</span><br></pre></td></tr></table></figure></p>
@@ -119,14 +117,13 @@
 <p>  以下代码在浏览器中输出hello world<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">response(<span class="string">'hello'</span>)</span><br><span class="line">response(<span class="string">' world'</span>)</span><br><span class="line">response.end()</span><br></pre></td></tr></table></figure></p>
 <p>  相当于<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.end(<span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>  判断路径处理响应<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var url = req.url</span><br><span class="line"><span class="keyword">if</span>(url === <span class="string">'/'</span>)&#123;</span><br><span class="line">  res.end(<span class="string">'index page'</span>)</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(url === <span class="string">'/login'</span>)&#123;</span><br><span class="line">  res.end(<span class="string">'login page'</span>)</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  response.end(<span class="string">'404 not found'</span>)</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line">返回字符串数组</span><br><span class="line">```bash</span><br><span class="line">response.end(JSON.stringify(products))</span><br></pre></td></tr></table></figure></p>
-<p><strong>3.其他相关知识</strong></p>
-<p><strong>-ip地址和端口号</strong><br>  ip用来定位计算机 端口用来定位具体的应用程序<br>  (所有需要联网通信的软件必须具有端口号 0~65536)<br>  两个js文件里 分别开两个服务一个占用端口3000另一个占用5000<br>  开启两个终端 在浏览器里分别打开 互不影响<br><strong>编码内容</strong><br>  在服务器端默认发送的数据是utf8编码的内容<br>  但是浏览器并不知是utf8并按照默认的编码去解析<br>  中文操作系统默认为gbk<br>  因此要告诉浏览器发送的内容是什么编码<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">response.setHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/plain;charset=utf-8'</span>)</span><br><span class="line">response.end(<span class="string">'hello 世界'</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="3-其他相关知识"><a href="#3-其他相关知识" class="headerlink" title="3.其他相关知识"></a>3.其他相关知识</h1><p><strong>-ip地址和端口号</strong><br>  ip用来定位计算机 端口用来定位具体的应用程序<br>  (所有需要联网通信的软件必须具有端口号 0~65536)<br>  两个js文件里 分别开两个服务一个占用端口3000另一个占用5000<br>  开启两个终端 在浏览器里分别打开 互不影响<br><strong>编码内容</strong><br>  在服务器端默认发送的数据是utf8编码的内容<br>  但是浏览器并不知是utf8并按照默认的编码去解析<br>  中文操作系统默认为gbk<br>  因此要告诉浏览器发送的内容是什么编码<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">response.setHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/plain;charset=utf-8'</span>)</span><br><span class="line">response.end(<span class="string">'hello 世界'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>  加上前一句后 在浏览器network里面能查看到response headers里面多了一个content type项<br>  text/plain 普通文本格式<br>  text/html html格式<br>  image/jpeg 图片格式<br>  常用资源对照表参考<a href="https://tool.oschina.net/commons" target="_blank" rel="noopener">https://tool.oschina.net/commons</a> 一个url对应到一个资源 由自己定义<br>  另外 如果js文件读取html文件让它在浏览器中显示页面内容 一旦html内容修改 只需刷新浏览器 不用重启服务 即能更新页面</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/25/node.js-1/" data-id="ck7ai5mev0003a3pfdqgkx2cc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/02/25/node.js-1/" data-id="ck7ddk8v30003mlpf3cvpihw9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
@@ -178,7 +175,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a>
+      <a href="/tags/Node-js/" style="font-size: 20px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a>
     </div>
   </div>
 
@@ -198,6 +195,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/03/03/node.js-2/">Node.js学习笔记(二)</a>
+          </li>
         
           <li>
             <a href="/2020/03/01/react-learning1/">React学习笔记(一)</a>
