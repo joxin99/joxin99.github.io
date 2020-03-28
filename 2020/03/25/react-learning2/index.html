@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="三.React中的语法注意1.React中的key用法vue和react都是在操作虚拟dom，并且根据diff算法进行新旧dom对比，从而更新dom如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法使用key，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素key值的存在保证了唯一性，可以用于dom的重新渲染或是就地复用React">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-25T13:15:39.157Z">
+<meta property="og:updated_time" content="2020-03-28T14:41:40.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React学习笔记(二)">
 <meta name="twitter:description" content="三.React中的语法注意1.React中的key用法vue和react都是在操作虚拟dom，并且根据diff算法进行新旧dom对比，从而更新dom如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法使用key，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素key值的存在保证了唯一性，可以用于dom的重新渲染或是就地复用React">
@@ -92,17 +92,59 @@
 
 <p>顺便提一句 {/<em>…</em>/} 或者//是注释</p>
 <p><strong>2.React中jsx的className和htmlFor</strong><br>用className来代替class htmlFor来代替label的for属性</p>
-<h1 id="四-React创建组件"><a href="#四-React创建组件" class="headerlink" title="四.React创建组件"></a>四.React创建组件</h1><p>先在chrome上安装React developer tool<br><strong>1.第一种创建方式</strong><br>使用构造函数创建组件<br>如果需要接受外界传递的数据需要在构造函数的参数列表中使用props来接收<br>必须要向外return一个合法的JSX创建的虚拟DOM<br>分为2步：1.创建组件  </p>
+<h1 id="四-React创建组件"><a href="#四-React创建组件" class="headerlink" title="四.React创建组件"></a>四.React创建组件</h1><p>先在chrome上安装React developer tool<br><strong>1.第一种创建方式</strong><br>使用构造函数创建组件<br>如果需要接受外界传递的数据需要在构造函数的参数列表中使用props来接收<br>必须要向外return一个合法的JSX创建的虚拟DOM<br>分为2步：<br>1.创建组件 (组件大写开头否则浏览器无法识别) </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Hello</span></span>() &#123;</span><br><span class="line">  //1.如果在一个组件中<span class="built_in">return</span>一个null那么此组件什么都不渲染</span><br><span class="line">  //<span class="built_in">return</span> null</span><br><span class="line">  //2.或者返回标签</span><br><span class="line">  <span class="built_in">return</span> &lt;h3&gt;这是Hello组件&lt;/h3&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>2.为组件传递数据</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//在构造函数中使用props接受外界传递的数据</span><br><span class="line"><span class="keyword">function</span> Hello(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> &lt;h3&gt;这是Hello组件 &#123;props.name&#125;&lt;/h3&gt;</span><br><span class="line">&#125;</span><br><span class="line">const dog = &#123;</span><br><span class="line">  name: <span class="string">'大黄'</span>,</span><br><span class="line">  age: 3,</span><br><span class="line">  gender: <span class="string">'雄'</span></span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    123</span><br><span class="line">     &#123;/*直接把组件的名称以标签的形式丢到页面上即可*/&#125;</span><br><span class="line">     //使用组件并为组件传递props数据</span><br><span class="line">    &lt;Hello name=&#123;dog.name&#125; age=&#123;dog.age&#125; gender=&#123;dog.gender&#125;&gt;&lt;/Hello&gt;</span><br><span class="line">     &#123;/*那么在 Hello的组件里 能看到props中存在name:<span class="string">"大黄"</span> 但是props是只读的，不能被重新赋值*/&#125;</span><br><span class="line">  &lt;/div&gt; ,document.getElementById(<span class="string">'app'</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//在构造函数中使用props接受外界传递的数据</span><br><span class="line"><span class="keyword">function</span> Hello(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> &lt;h3&gt;这是Hello组件 &#123;props.name&#125; &#123;props.age&#125; &#123;props.gender&#125;&lt;/h3&gt;</span><br><span class="line">&#125;</span><br><span class="line">const dog = &#123;</span><br><span class="line">  name: <span class="string">'大黄'</span>,</span><br><span class="line">  age: 3,</span><br><span class="line">  gender: <span class="string">'雄'</span></span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    123</span><br><span class="line">     &#123;/*直接把组件的名称以标签的形式丢到页面上即可*/&#125;</span><br><span class="line">     //使用组件并为组件传递props数据</span><br><span class="line">    &lt;Hello name=&#123;dog.name&#125; age=&#123;dog.age&#125; gender=&#123;dog.gender&#125;&gt;&lt;/Hello&gt;</span><br><span class="line">     &#123;/*那么在 Hello的组件里 能看到props中存在name:<span class="string">"大黄"</span> 但是props是只读的，不能被重新赋值*/&#125;</span><br><span class="line">    &lt;Hello &#123;...dog&#125;&gt;&lt;/Hello&gt;</span><br><span class="line">    &#123;/*...dog 中...是ES6中的一个展开运算符 可以引入这个dog对象*/&#125;</span><br><span class="line">  &lt;/div&gt; ,document.getElementById(<span class="string">'app'</span>))</span><br></pre></td></tr></table></figure>
 
+<p>如何理解展开运算符 以下两段代码有一样的效果 都是输出o2.o1的组合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var o1 = &#123;</span><br><span class="line">  age:22,</span><br><span class="line">  name:<span class="string">'ok'</span>,</span><br><span class="line">  phone:<span class="string">'11111'</span></span><br><span class="line">&#125;</span><br><span class="line">var o2 = &#123;</span><br><span class="line">  gender:<span class="string">'female'</span>,</span><br><span class="line">  ...o1</span><br><span class="line">&#125;</span><br><span class="line">console.log(o2)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var o1 = &#123;</span><br><span class="line">  age:22,</span><br><span class="line">  name:<span class="string">'ok'</span>,</span><br><span class="line">  phone:<span class="string">'11111'</span></span><br><span class="line">&#125;</span><br><span class="line">var o2 = &#123;</span><br><span class="line">  gender:<span class="string">'female'</span>,</span><br><span class="line">  age:o1.age,</span><br><span class="line">  name:o1.name,</span><br><span class="line">  phone:o1.phone</span><br><span class="line">&#125;</span><br><span class="line">console.log(o2)</span><br></pre></td></tr></table></figure>
+
+<p><strong>如何将组件提取出来</strong><br>在src目录下创建一个新的components文件夹 并创建Hello.jsx文件 将function Hello 添加到里面 并利用export default暴露出来并在Hello.jsx组件中导入React包 以及在index.js中导入Hello </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import Hello from <span class="string">'./components/Hello'</span></span><br></pre></td></tr></table></figure>
+
+<p>但是 导入的时候默认不做单独配置的话不能省略.jsx后缀名<br>配置方法如下：<br>在webpack.config.js中的module.exports={}里添加一项为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resolve:&#123;</span><br><span class="line">  extensions:[<span class="string">'.js'</span>,<span class="string">'.jsx'</span>,<span class="string">'.json'</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>并且重新cnpm run dev<br>表示这几个文件后缀名 能省略不写 默认补全</p>
+<p>如果引入的时候 是利用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import Hello from <span class="string">'@/components/Hello'</span></span><br></pre></td></tr></table></figure>
+
+<p>使用@符号是为了表示项目根目录中src这一层目录路径 因此需要在配置中声明@表示的位置<br>因此在resolve中新增：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span>:&#123;</span><br><span class="line">  <span class="string">'@'</span>:path.join(__dirname,<span class="string">'./src'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.第二种创建方式</strong><br>利用class创建组件<br>先从class基本使用开始</p>
+<p><em>以下为实例属性</em></p>
+<p>ES6中class关键字是实现面向对象编程的新形式<br>每个类中都存在一个看不见的空的构造器 constructor(){} 构造器的租用就是每当new这个类的时候会优先执行构造器中的代码<br>在构造器总提供的属性也成为实例属性<br>如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Animal&#123;</span><br><span class="line">  constructor(name,age)&#123;</span><br><span class="line">    this.name = name</span><br><span class="line">    this.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const a1 = new Animal(<span class="string">'大黄'</span>,3)</span><br></pre></td></tr></table></figure>
+
+<p><em>以下为静态属性</em></p>
+<p>如直接在function Person(){}外头定义的Person.info = ‘aaaa’<br>或者</p>
+<p>在class Animal中 定义的static info = ‘aaaa’</p>
+<p><em>以下为实例方法</em></p>
+<p>1.若用function定义了类 则可以在类外 利用<br>类名.prototype.functionname = function(){}<br>const p1 = new 类名<br>p1.functionname()</p>
+<p>2.若用class定义了类 那么在class中 直接用<br>functionname(){}定义函数 并利用定义的对象去调用</p>
+<p><em>以下为静态方法</em></p>
+<p>静态方法都在构造器里头</p>
+<p>1.若用function定义了类 则可以在类外 利用<br>类名.functionname = function(){}<br>调用的时候 直接 类名.functionname()</p>
+<p>2.若用class定义了类 那么在class中 直接用<br>static functionname(){}<br>调用的时候 直接 类名.functionname()</p>
+<p><strong>class总结</strong><br>1.class内部 只能写构造器 静态属性和方法以及实例方法<br>2.class关键字内部还是用原来配方 因此将class关键字称为语法糖</p>
+<p><strong>基于class关键字创建组件</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class 组件名称 extends React.Component&#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> &lt;div&gt; 这是class创建的组件 &#123;this.props.name&#125;&lt;/div&gt;</span><br><span class="line">  &#125;//class 组件的一个实例方法</span><br><span class="line">  //在class创建的组件中要使用外接传来的props参数 不需要接收 只需通过</span><br><span class="line">  //this.props.***</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>给组件绑定私有数据 数据可读可写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class 组件名称 extends React.Component&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span></span>()&#123;</span><br><span class="line">    super()</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      msg:<span class="string">'大家好 我是class创建的组件'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> &lt;div&gt;&#123;this.state.msg&#125;&lt;/div&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.两种区别</strong><br>使用class关键字创建的组件有自己的私有数据生命周期函数————有状态组件<br>使用function创建的组件只有props没有自己的私有数据和生命周期函数————无状态组件<br>无状态组件运行效率稍高<br>本质区别：<strong>有无state属性</strong> 和 <strong>有无生命周期函数</strong></p>
+<p>props和state/data 的区别：<br>props由外界传递 只读不能重新赋值<br>state/data都是组件私有 (通过Ajax获取的数据一般都是私有数据)<br>state/data可读可写</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/25/react-learning2/" data-id="ck87cpms30008uapf0qvocmlz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/25/react-learning2/" data-id="ck8bq668m0004jupfko4pox6w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
@@ -112,6 +154,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/03/28/react-learning3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          React学习笔记(三)
+        
+      </div>
+    </a>
   
   
     <a href="/2020/03/03/node.js-2/" id="article-nav-older" class="article-nav-link-wrap">
@@ -145,7 +196,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+      <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
     </div>
   </div>
 
@@ -167,6 +218,10 @@
       <ul>
         
           <li>
+            <a href="/2020/03/28/react-learning3/">React学习笔记(三)</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/25/react-learning2/">React学习笔记(二)</a>
           </li>
         
@@ -180,10 +235,6 @@
         
           <li>
             <a href="/2020/02/25/node.js-1/">Node.js学习笔记(一)</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/11/newone/">新建一篇文章</a>
           </li>
         
       </ul>
