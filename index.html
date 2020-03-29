@@ -84,12 +84,55 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="五-创建组件实例"><a href="#五-创建组件实例" class="headerlink" title="五.创建组件实例"></a>五.创建组件实例</h1><p><strong>1.</strong></p>
+        <h1 id="五-创建组件实例————评论列表案例"><a href="#五-创建组件实例————评论列表案例" class="headerlink" title="五.创建组件实例————评论列表案例"></a>五.创建组件实例————评论列表案例</h1><p><strong>1.创建父组件</strong><br>用class创建父组件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class CmList extends React.Component&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span></span>() &#123;</span><br><span class="line">    super()</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      CommentList: [//评论列表数据</span><br><span class="line">        &#123; id: 1, user: <span class="string">'张三'</span>, content: <span class="string">'haha'</span> &#125;,</span><br><span class="line">        &#123; id: 2, user: <span class="string">'李四'</span>, content: <span class="string">'haha'</span> &#125;,</span><br><span class="line">        &#123; id: 3, user: <span class="string">'王五'</span>, content: <span class="string">'haha'</span> &#125;,</span><br><span class="line">        &#123; id: 4, user: <span class="string">'赵六'</span>, content: <span class="string">'haha'</span> &#125;,</span><br><span class="line">        &#123; id: 5, user: <span class="string">'杨七'</span>, content: <span class="string">'haha'</span> &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;这是评论列表组件&lt;/h1&gt;</span><br><span class="line">        &#123;this.state.CommentList.map(item =&gt; (</span><br><span class="line">          &lt;div key=&#123;item.id&#125;&gt;</span><br><span class="line">            &lt;h2&gt;评论人：&#123;item.user&#125;&lt;/h2&gt;</span><br><span class="line">            &lt;p&gt;评论内容：&#123;item.content&#125;&lt;/p&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        ))&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.创建子组件</strong><br>也可以将评论单独作为Item项 用function去创建<br>相当于…item 可以作为CmItem的props数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> CmItem(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;评论人：&#123;props.user&#125;&lt;/h2&gt;</span><br><span class="line">      &lt;p&gt;评论内容：&#123;props.content&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">class CmList extends React.Component&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span></span>() &#123;</span><br><span class="line">    super()</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      CommentList: [//评论列表数据</span><br><span class="line">        &#123; id: 1, user: <span class="string">'张三'</span>, content: <span class="string">'haha'</span> &#125;,</span><br><span class="line">        &#123; id: 2, user: <span class="string">'李四'</span>, content: <span class="string">'haha'</span> &#125;,</span><br><span class="line">        &#123; id: 3, user: <span class="string">'王五'</span>, content: <span class="string">'haha'</span> &#125;,</span><br><span class="line">        &#123; id: 4, user: <span class="string">'赵六'</span>, content: <span class="string">'haha'</span> &#125;,</span><br><span class="line">        &#123; id: 5, user: <span class="string">'杨七'</span>, content: <span class="string">'haha'</span> &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;这是评论列表组件&lt;/h1&gt;</span><br><span class="line">        &#123;this.state.CommentList.map(item =&gt; &lt;CmItem &#123;...item&#125; key=&#123;item.id&#125;&gt;&lt;/CmItem&gt;)&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.如何将组件抽离为另一个文件</strong><br>首先再次强调 @/…为绝对路径  ./…为相对路径<br>在components中新建CmItem.jsx文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import React from <span class="string">"react"</span>;</span><br><span class="line"><span class="built_in">export</span> default <span class="keyword">function</span> CmItem(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;评论人：&#123;props.user&#125;&lt;/h2&gt;</span><br><span class="line">      &lt;p&gt;评论内容：&#123;props.content&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再新建一个CmList.jsx文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import React from <span class="string">"react"</span>;</span><br><span class="line">import CmItem from <span class="string">"@/components/CmItem"</span>;</span><br><span class="line">//或者是import CmItem from <span class="string">"./CmItem"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default class CmList extends React.Component &#123;</span><br><span class="line">  //内容同上</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.在组件中使用style行内样式并封装样式对象</strong><br>在jsx中写行内样式 不能为style设置字符串的值<br>数值类型的样式可以不用引号包裹 如果是字符串类型的需要引号包裹<br>应该用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">style = &#123;&#123;color:<span class="string">'red'</span>, fontSize:<span class="string">'32px'</span>,zIndex:3&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以将样式提取到外面 成为<strong>第一层封装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const divStyle = &#123; border:<span class="string">'1px dashed #ccc'</span>,margin:<span class="string">'10px'</span>,padding:<span class="string">'10px'</span>,boxShadow:<span class="string">'0 0 10px #ccc'</span> &#125;</span><br><span class="line">const h2Style = &#123; fontSize: <span class="string">"20px"</span>, fontWeight: 700 &#125;</span><br><span class="line">const pStyle = &#123;fontSize:<span class="string">'16px'</span>&#125;</span><br><span class="line"><span class="built_in">export</span> default <span class="keyword">function</span> CmItem(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div style=&#123;divStyle&#125;&gt;</span><br><span class="line">      &lt;h2 style=&#123;h2Style&#125;&gt;评论人：&#123;props.user&#125;&lt;/h2&gt;</span><br><span class="line">      &lt;p style=&#123;pStyle&#125;&gt;评论内容：&#123;props.content&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或者可以<strong>第二层封装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const styles=&#123;</span><br><span class="line">  item: &#123; border:<span class="string">'1px dashed #ccc'</span>,margin:<span class="string">'10px'</span>,padding:<span class="string">'10px'</span>,boxShadow:<span class="string">'0 0 10px #ccc'</span> &#125;,</span><br><span class="line">  user: &#123; fontSize: <span class="string">"20px"</span>, fontWeight: 700 &#125;,</span><br><span class="line">  content: &#123;fontSize:<span class="string">'16px'</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">export</span> default <span class="keyword">function</span> CmItem(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div style=&#123;styles.item&#125;&gt;</span><br><span class="line">      &lt;h2 style=&#123;styles.user&#125;&gt;评论人：&#123;props.user&#125;&lt;/h2&gt;</span><br><span class="line">      &lt;p style=&#123;styles.content&#125;&gt;评论内容：&#123;props.content&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以及可以<strong>第三层封装</strong><br>新建一个styles.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> default&#123;</span><br><span class="line">  item: &#123; border:<span class="string">'1px dashed #ccc'</span>,margin:<span class="string">'10px'</span>,padding:<span class="string">'10px'</span>,boxShadow:<span class="string">'0 0 10px #ccc'</span> &#125;,</span><br><span class="line">  user: &#123; fontSize: <span class="string">"20px"</span>, fontWeight: 700 &#125;,</span><br><span class="line">  content: &#123;fontSize:<span class="string">'16px'</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在CmItem.jsx文件中引入styles.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import styles from <span class="string">'@/components/styles'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>5.在组件中使用css样式表</strong><br>首先安装 cnpm i style-loader css-loader -D<br>然后在module的rules中配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="built_in">test</span> : /\.css$/,use:[<span class="string">'style-loader'</span>,<span class="string">'css-loader'</span>]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>*<em>可以打包处理css样式表的第三方 因此在引入css文件的时候能够处理<br>*</em>在src目录下新建文件夹css 并创建一个cmlist.css<br>*<em>在CmList 中 import cmlist from ‘@/css/cmlist.css’<br>*</em>并在h1标签中引入 className=”title”<br>*<em>但是此时样式表并不只在CmList中生效 反而 实在全局上生效<br>*</em>Vue中利用在style标签中添加scoped解决冲突<br>*<em>React中没有类似的指令可以解决作用域的问题<br>*</em>但是 可以利用模块化解决 本来导入import cmlist from ‘@/css/cmlist.css’时 cmlist是一个空对象 但是启用模块化之后 能接收到内容<br>**如何变成模块化<br>在css-loader后面利用?追加参数 modules这一个固定参数表示 为普通的css样式表启用模块化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="built_in">test</span> : /\.css$/,use:[<span class="string">'style-loader'</span>,<span class="string">'css-loader?modules'</span>]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重新编译后 可以 接收到对象 并且每个class会自动生成一个类名格式<br>*<em>如何将生成的类名变为我们能看的懂的更清晰的格式呢<br>*</em>在配置中 使用localIdentName 自定义生成类名格式 可选的参数有：<br>[path] [name] [local] [hash:length]</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="built_in">test</span> : /\.css$/,use:[<span class="string">'style-loader'</span>,<span class="string">'css-loader?modules&amp;localIdentName=[path][name]-[local]-[hash:5]'</span>]&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>此处踩雷 新版的webpack已经不支持此种方式 会报错 更新方式如下</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="built_in">test</span>: /\.css$/,</span><br><span class="line">  use: [&#123; loader: <span class="string">"style-loader"</span> &#125;, &#123;</span><br><span class="line">    loader: <span class="string">"css-loader"</span>,</span><br><span class="line">    options: &#123;</span><br><span class="line">      modules: &#123;</span><br><span class="line">        localIdentName: <span class="string">"[path][name]-[local]-[hash:5]"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此 在src的css文件夹下 cmlist.css的.title 可表示为<br>src-cmlist-title-5位生成的hash值 避免重复又可以查看路径</p>
+<p>如果test类名不想被设定好的路径同化 那么可以将写成:global(.test){…}的形式 不会被模块化并且全局生效<br>引用的时候用className=”test”即可<br>或者用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">className=&#123;[cmlist.title,<span class="string">'tets'</span>].join(<span class="string">' '</span>)&#125;</span><br><span class="line">//在类名中间加空格</span><br></pre></td></tr></table></figure>
+
+<p>相对的 有:global() 就有 :local()</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/28/react-learning3/" data-id="ck8bq6698000ijupfppds44ib" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/28/react-learning3/" data-id="ck8d6ecpx00098dpfanxwru7l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
@@ -180,7 +223,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/25/react-learning2/" data-id="ck8bq668m0004jupfko4pox6w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/25/react-learning2/" data-id="ck8d6ecpv00088dpf5rf44g84" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
@@ -225,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/03/node.js-2/" data-id="ck8bq668o0005jupfbv5kh4l3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/03/node.js-2/" data-id="ck8d6ecps00048dpf3ixnou61" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
@@ -300,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/react-learning1/" data-id="ck8bq668h0001jupfkc3jswdq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/01/react-learning1/" data-id="ck8d6ecpt00058dpfhg1x61e0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
@@ -368,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/25/node.js-1/" data-id="ck8bq668q0008jupf6kloeukd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/02/25/node.js-1/" data-id="ck8d6ecpq00038dpfwjmxr42r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
@@ -415,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/11/newone/" data-id="ck8bq668l0003jupfzr2up6w1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/11/newone/" data-id="ck8d6ecpm00018dpfvtuekyyf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -466,7 +509,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/11/hello-world/" data-id="ck8bq668d0000jupfx6n6kpnv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/11/hello-world/" data-id="ck8d6ecpi00008dpf4eja2a99" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
