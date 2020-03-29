@@ -125,14 +125,26 @@
 
 <p>因此 在src的css文件夹下 cmlist.css的.title 可表示为<br>src-cmlist-title-5位生成的hash值 避免重复又可以查看路径</p>
 <p>如果test类名不想被设定好的路径同化 那么可以将写成:global(.test){…}的形式 不会被模块化并且全局生效<br>引用的时候用className=”test”即可<br>或者用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">className=&#123;[cmlist.title,<span class="string">'tets'</span>].join(<span class="string">' '</span>)&#125;</span><br><span class="line">//在类名中间加空格</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">className=&#123;[cmlist.title,<span class="string">'test'</span>].join(<span class="string">' '</span>)&#125;</span><br><span class="line">//在类名中间加空格</span><br></pre></td></tr></table></figure>
 
 <p>相对的 有:global() 就有 :local()</p>
+<p><strong>6.引入bootstrap</strong><br>cnpm i bootstrap -S<br>如果在引用某个包的时候 这个包被安装到了node_modules目录中<br>则 可以省略node_modules这一层的目录 直接以包名引入自己的模块或者样式表</p>
+<p>import bootcss from ‘bootstrap/dist/css/bootstrap.css’<br>并且在modules里配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="built_in">test</span> : /\.ttf|woff|woff2|eot|svg$/,use:<span class="string">'url-loader'</span>&#125;</span><br><span class="line">//打包处理字体文件的loader</span><br></pre></td></tr></table></figure>
+
+<p>安装 cnpm i url-loader file-loader -D</p>
+<p>此时 就可以利用bootstrap中的样式 如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">className=&#123;bootcss.btn&#125;  </span><br><span class="line"></span><br><span class="line">className =&#123;[bootcss.btn,bootcss[<span class="string">'btn-primary'</span>]].join(<span class="string">' '</span>)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>*<em>但是这样引用十分麻烦 为了直接使用className=””<br>*</em>那么可以自己规定 自己写的css文件后缀为.scss 为这部分启用模块化<br>*<em>如果引入的是第三方css 那.css的不给予模块化<br>*</em>并且cnpm i sass-loader node-sass -D 安装能够解析scss文件的loader<br>**再重新配置打包.css 和 .scss的loader</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">  <span class="built_in">test</span>: /\.css$/,</span><br><span class="line">  use: [</span><br><span class="line">    &#123; loader: <span class="string">"style-loader"</span> &#125;,</span><br><span class="line">    &#123; loader: <span class="string">"css-loader"</span>  &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br><span class="line"> &#123;</span><br><span class="line">  <span class="built_in">test</span>: /\.scss$/,</span><br><span class="line">  use: [</span><br><span class="line">    &#123; loader: <span class="string">"style-loader"</span> &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="string">"css-loader"</span>,</span><br><span class="line">      options: &#123;</span><br><span class="line">        modules: &#123;</span><br><span class="line">          localIdentName: <span class="string">"[path][name]-[local]-[hash:5]"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123; loader: <span class="string">"sass-loader"</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么此时import bootcss from ‘bootstrap/dist/css/bootstrap.css’<br>bootcss是一个空对象 没有意义<br>只用import ‘bootstrap/dist/css/bootstrap.css’ 即可</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/28/react-learning3/" data-id="ck8d6ecpx00098dpfanxwru7l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/28/react-learning3/" data-id="ck8da1fk50009eupfcmuc9v16" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
@@ -223,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/25/react-learning2/" data-id="ck8d6ecpv00088dpf5rf44g84" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/25/react-learning2/" data-id="ck8da1fk40008eupfoncieoy2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
@@ -268,7 +280,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/03/node.js-2/" data-id="ck8d6ecps00048dpf3ixnou61" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/03/node.js-2/" data-id="ck8da1fk00004eupfky2dk5no" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
@@ -343,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/react-learning1/" data-id="ck8d6ecpt00058dpfhg1x61e0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/01/react-learning1/" data-id="ck8da1fk10005eupfrklbvvbg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
@@ -411,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/25/node.js-1/" data-id="ck8d6ecpq00038dpfwjmxr42r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/02/25/node.js-1/" data-id="ck8da1fjy0003eupf62sjos0p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
@@ -458,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/11/newone/" data-id="ck8d6ecpm00018dpfvtuekyyf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/11/newone/" data-id="ck8da1fju0001eupf5hsx02wp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -509,7 +521,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/11/hello-world/" data-id="ck8d6ecpi00008dpf4eja2a99" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/11/hello-world/" data-id="ck8da1fjq0000eupfh3zir2f1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
