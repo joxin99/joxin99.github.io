@@ -62,6 +62,78 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-react-learning4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/31/react-learning4/" class="article-date">
+  <time datetime="2020-03-31T12:05:55.000Z" itemprop="datePublished">2020-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/31/react-learning4/">React学习笔记(四)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="六-在React中绑定事件"><a href="#六-在React中绑定事件" class="headerlink" title="六.在React中绑定事件"></a>六.在React中绑定事件</h1><p><strong>1.绑定事件注意点</strong></p>
+<p>(1)事件名称都由React提供 因此首字母必须大写 如onClick、onMouseOver(在React中有一套自己的事件绑定机制 事件名是小驼峰命名)</p>
+<p>(2)为事件提供的处理函数必须是以下格式：onClick = {function(){}}</p>
+<p>(3)用的最多的事件绑定形式为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick=&#123;() =&gt; this.show(<span class="string">'传参'</span>)&#125;&gt;按钮&lt;/button&gt;</span><br><span class="line">show = (arg1) =&gt;&#123;</span><br><span class="line">  console.log(<span class="string">'show方法'</span>+arg1)</span><br><span class="line">&#125;//事件处理函数需要定义为一个箭头函数然后赋值给函数名称</span><br></pre></td></tr></table></figure>
+
+<p>(4)在React中若想修改state中的数据msg:’222’ 则在函数func()中使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.setState(&#123;msg:<span class="string">'123'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>setState的注意点：<br>1.在其中只会把对应的state状态msg修改 不会覆盖state中其他的值<br>2.setState的执行是异步的 调用setState修改msg之后 虽然页面上会显示修改后的值  但是在 函数func中console.log(‘msg’) 仍然输出修改前的值<br>如果想输出修改后的值 应该回调 利用this.setState({},callback) 即：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">this.setState(&#123;</span><br><span class="line">  msg:<span class="string">'333'</span>+<span class="string">'--'</span>+arg2</span><br><span class="line">  &#125;,<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">  console.log(this.state.msg)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.一个概念——箭头函数</strong><br>箭头函数相当于匿名函数，并且简化了函数定义。<br>箭头函数有两种格式<br>一种只包含一个表达式 连{ … }和return都省略掉了 如x =&gt; x * x<br>还有一种可以包含多条语句，这时候就不能省略{ … }和return 如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">() =&gt; 3.14</span><br><span class="line">(x, y) =&gt; x * x + y * y</span><br><span class="line">x =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (x &gt; 0) &#123;</span><br><span class="line">        <span class="built_in">return</span> x * x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">return</span> - x * x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.绑定文本框和state的值</strong></p>
+<p>若在上述的基础上render(){}中添加一个</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> style=&#123;&#123;width:<span class="string">'100%'</span>&#125;&#125; value= &#123;this.state.msg&#125;&gt;&lt;/input&gt;</span><br></pre></td></tr></table></figure>
+
+<p>点击按钮 文本框内的值会随着改变  但此时只实现了 state向页面的单向传值 且会报错<br>此时在value后面添加一个readOnly 则不会报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> style=&#123;&#123;width:<span class="string">'100%'</span>&#125;&#125; value= &#123;this.state.msg&#125; readOnly/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>若想要实现双向传值 那么 应该使用onChange事件 获取实时值并传回state中 并呈现到页面上</p>
+<p><strong>A.</strong>在onChange的事件中 获取文本框的值有两种方法<br>(1) 通过事件参数e来获取value</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;input</span><br><span class="line">  <span class="built_in">type</span>=<span class="string">"text"</span></span><br><span class="line">  style=&#123;&#123; width: <span class="string">"100%"</span> &#125;&#125;</span><br><span class="line">  value=&#123;this.state.msg&#125;</span><br><span class="line">  onChange=&#123;(e)=&gt;this.txtChanged(e)&#125;</span><br><span class="line">/&gt;</span><br><span class="line">txtChanged = (e) =&gt;&#123;</span><br><span class="line">  console.log(e.target.value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每次在input输入即可获得输出：原有value值加实时输入值</p>
+<p>(2)使用ref获取value</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;input</span><br><span class="line">  <span class="built_in">type</span>=<span class="string">"text"</span></span><br><span class="line">  style=&#123;&#123; width: <span class="string">"100%"</span> &#125;&#125;</span><br><span class="line">  value=&#123;this.state.msg&#125;</span><br><span class="line">  onChange=&#123;(e)=&gt;this.txtChanged(e)&#125;</span><br><span class="line">  ref=<span class="string">"txt"</span></span><br><span class="line">/&gt;</span><br><span class="line">txtChanged = (e) =&gt;&#123;</span><br><span class="line">  console.log(this.refs.txt.value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>B.</strong> 将state中的值更新并传回页面<br>依旧定义一个新的参数 并使msg为新的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">txtChanged = (e) =&gt;&#123;</span><br><span class="line">  console.log(this.refs.txt.value)</span><br><span class="line">  const val1 = e.target.value</span><br><span class="line">  this.setState(&#123;</span><br><span class="line">    msg:val1</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="七-React的组件生命周期"><a href="#七-React的组件生命周期" class="headerlink" title="七.React的组件生命周期"></a>七.React的组件生命周期</h1><p>React的生命周期分为三个阶段<br><strong>1.创建</strong><br>一辈子执行一次<br>componentWillMount<br>render<br>componentDidMount<br><strong>2.运行</strong><br>按需 根据props属性或者state状态的改变 有选择性地执行0到多次<br>componentWillReceiveProps<br>shouldComponentUpdate<br>componentWillUpdate<br>render<br>componentDidUpdate<br><strong>3.销毁</strong><br>一辈子只执行一次<br>componentWillUnmount</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/31/react-learning4/" data-id="ck8g5fbln000b8zpft7u0l584" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-react-learning3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/28/react-learning3/" class="article-date">
@@ -144,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/28/react-learning3/" data-id="ck8da1fk50009eupfcmuc9v16" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/28/react-learning3/" data-id="ck8g5fblk00098zpflqdhzvg6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
@@ -235,7 +307,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/25/react-learning2/" data-id="ck8da1fk40008eupfoncieoy2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/25/react-learning2/" data-id="ck8g5fblj00088zpfwo99y810" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
@@ -280,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/03/node.js-2/" data-id="ck8da1fk00004eupfky2dk5no" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/03/node.js-2/" data-id="ck8g5fblg00048zpf6o3koyu1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
@@ -355,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/react-learning1/" data-id="ck8da1fk10005eupfrklbvvbg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/01/react-learning1/" data-id="ck8g5fblh00058zpfu21wjl81" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
@@ -423,7 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/25/node.js-1/" data-id="ck8da1fjy0003eupf62sjos0p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/02/25/node.js-1/" data-id="ck8g5fblb00018zpf6voy3r3x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
@@ -470,7 +542,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/11/newone/" data-id="ck8da1fju0001eupf5hsx02wp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/11/newone/" data-id="ck8g5fbl700008zpfe8t2oebw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -521,7 +593,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/11/hello-world/" data-id="ck8da1fjq0000eupfh3zir2f1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/11/hello-world/" data-id="ck8g5fble00038zpfdx4wo8ee" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -578,6 +650,10 @@
       <ul>
         
           <li>
+            <a href="/2020/03/31/react-learning4/">React学习笔记(四)</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/28/react-learning3/">React学习笔记(三)</a>
           </li>
         
@@ -591,10 +667,6 @@
         
           <li>
             <a href="/2020/03/01/react-learning1/">React学习笔记(一)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/02/25/node.js-1/">Node.js学习笔记(一)</a>
           </li>
         
       </ul>
