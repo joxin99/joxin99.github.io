@@ -84,10 +84,67 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一-Node中的模块系统"><a href="#一-Node中的模块系统" class="headerlink" title="一.Node中的模块系统"></a>一.Node中的模块系统</h1><h2 id="1-使用Node编写应用程序主要就是在使用"><a href="#1-使用Node编写应用程序主要就是在使用" class="headerlink" title="1.使用Node编写应用程序主要就是在使用"></a><strong>1.使用Node编写应用程序主要就是在使用</strong></h2><p><strong>!EcmaScript语言</strong><br>  和浏览器不一样 Node中没有BOM 和 DOM<br><strong>核心模块</strong><br>  文件操作fs<br>  http服务的http<br>  url路径操作<br>  path路径处理<br>  os操作系统信息<br><strong>第三方模块</strong><br>  如art-template<br><strong>自己写的模块</strong></p>
-<h2 id="2-什么是模块化"><a href="#2-什么是模块化" class="headerlink" title="2.什么是模块化"></a><strong>2.什么是模块化</strong></h2><p><strong>文件作用域</strong><br><strong>通信规则</strong><br>  加载require<br>  导出</p>
-<p>在 Node 中，每个模块内部都有一个自己的 module 对象<br>该 module 对象中，有一个成员叫：exports 也是一个对象<br>也就是说如果你需要对外导出成员，只需要把导出的成员挂载到 module.exports 中</p>
-<p>例如 main.js文件 </p>
+        <h1 id="一-Node中的模块系统"><a href="#一-Node中的模块系统" class="headerlink" title="一.Node中的模块系统"></a>一.Node中的模块系统</h1><h2 id="1-使用Node编写应用程序主要就是在使用"><a href="#1-使用Node编写应用程序主要就是在使用" class="headerlink" title="1.使用Node编写应用程序主要就是在使用"></a><strong>1.使用Node编写应用程序主要就是在使用</strong></h2><p><strong>(1)EcmaScript语言</strong><br>  和浏览器不一样 Node中没有BOM 和 DOM<br><strong>(2)核心模块</strong><br>  文件操作fs<br>  http服务的http<br>  url路径操作<br>  path路径处理<br>  os操作系统信息</p>
+<p>核心模块的本质也是文件<br>核心模块文件已经被编译到了二进制文件中了，我们只需要按照名字来加载就可以了</p>
+<p><strong>(3)第三方模块</strong><br>  如art-template<br>凡是第三方模块都必须通过 npm 来下载<br>使用的时候就可以通过 require(‘包名’) 的方式来进行加载才可以使用<br>不可能有任何一个第三方包和核心模块的名字是一样的<br>既不是核心模块、也不是路径形式的模块<br>   先找到当前文件所处目录中的 node_modules 目录<br>   <strong>a.</strong>node_modules/art-template<br>   <strong>b.</strong>node_modules/art-template/package.json 文件<br>   <strong>c.</strong>node_modules/art-template/package.json 文件中的 main 属性<br>   <strong>d.</strong>main 属性中就记录了 art-template 的入口模块<br>   <strong>e.</strong>然后加载使用这个第三方包<br>   <strong>f.</strong>实际上最终加载的还是文件</p>
+<p>   如果 package.json 文件不存在或者 main 指定的入口模块是也没有<br>   则 node 会自动找该目录下的 index.js,也就是说 index.js 会作为一个默认备选项</p>
+<p>   如果以上所有任何一个条件都不成立，则会进入上一级目录中的 node_modules 目录查找<br>   如果上一级还没有，则继续往上上一级查找<br>   如果直到当前磁盘根目录还找不到，最后报错：can not find module xxx</p>
+<p>注意：我们一个项目有且只有一个 node_modules，放在项目根目录中，这样的话项目中所有的子目录中的代码都可以加载到第三方包<br>不会出现有多个 node_modules</p>
+<p><strong>(4)自己写的模块</strong></p>
+<h2 id="2-什么是模块化"><a href="#2-什么是模块化" class="headerlink" title="2.什么是模块化"></a><strong>2.什么是模块化</strong></h2><p><strong>(1)文件作用域</strong><br><strong>(2)通信规则</strong><br>  加载require<br>  导出</p>
+<p>在 Node 中，每个模块内部都有一个自己的 <code>module</code> 对象<br>该 <code>module</code> 对象中，有一个成员叫：<code>exports</code> 也是一个对象<br>也就是说如果你需要对外导出成员，只需要把导出的成员挂载到 module.exports 中</p>
+<p>例如 main.js文件中导入foo.js中的对象add或者字符串’hello’<br>main.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var fooExports = require(<span class="string">'./foo.js'</span>)</span><br><span class="line">console.log(fooExports)</span><br></pre></td></tr></table></figure>
+
+<p>foo.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(x,y)&#123;</span><br><span class="line">  <span class="built_in">return</span> x+y</span><br><span class="line">&#125;</span><br><span class="line">module.exports = add</span><br><span class="line">//module.exports = <span class="string">'hello'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-CommonJS模块规范"><a href="#3-CommonJS模块规范" class="headerlink" title="3.CommonJS模块规范"></a><strong>3.CommonJS模块规范</strong></h2><p><strong>(1)加载require</strong><br>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var 自定义变量名称 = require(<span class="string">'模块'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>两个作用：<br>1.执行被加载代码块的代码<br>2.得到被加载代码块中的<code>exports</code>导出接口对象</p>
+<p><strong>require加载规则</strong><br>有main.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">require(<span class="string">'./a'</span>)</span><br><span class="line">require(<span class="string">'./b'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>a.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(<span class="string">'aaa'</span>)</span><br><span class="line">require(<span class="string">'./b'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>b.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(<span class="string">'bbb'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>此时运行main.js只会输出 aaa,bbb 不会再输出bbb<br>另外有<br>main.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require(<span class="string">'./a'</span>)</span><br><span class="line">var fn = require(<span class="string">'./b'</span>)</span><br><span class="line">console.log(fn)</span><br></pre></td></tr></table></figure>
+
+<p>a.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(<span class="string">'aaa'</span>)</span><br><span class="line">var fn = require(<span class="string">'./b'</span>)</span><br><span class="line">console.log(fn)</span><br></pre></td></tr></table></figure>
+
+<p>b.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(<span class="string">'bbb'</span>)</span><br><span class="line">module.exports = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">  console.log(<span class="string">'hello bbb'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果是输出:aaa  bbb  function function<br>优先从缓存加载:由于 在 a 中已经加载过 b 了,所以这里不会重复加载. 可以拿到其中的接口对象，但是不会重复执行里面的代码.这样做的目的是为了避免重复加载，提高模块加载效率<br><strong>(2)导出exports</strong><br>Node是模块作用域 默认文件中所有成员只在当前文件模块中有效<br>对于希望可以把被其他模块访问的成员必须将其挂载到<code>exports</code>接口对象中<br>1.导出多个成员</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">exports.a = <span class="number">123</span></span><br><span class="line">exports.b = <span class="string">'bar'</span></span><br><span class="line">exports.c = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'c'</span>)</span><br><span class="line">&#125;</span><br><span class="line">exports.d =&#123;</span><br><span class="line">  foo:<span class="string">'bar'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.导出单个成员(如果写了多个 会重新赋值 后面覆盖前面)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x+y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Node中 利用exports = module.exports 即省略了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> exports = <span class="built_in">module</span>.exports</span><br></pre></td></tr></table></figure>
+
+<p>exports使用注意点 exports指向一个区域  原来是module.exports 若重新赋值 输出会变化<br>main.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var fooExports = require(<span class="string">'./foo.js'</span>)</span><br><span class="line">console.log(fooExports)</span><br></pre></td></tr></table></figure>
+
+<p>foo.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exports = &#123;&#125;</span><br><span class="line">exports.foo = <span class="string">'bar'</span></span><br></pre></td></tr></table></figure>
+
+<p>输出：{}</p>
+<p>若foo.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">exports.a=123</span><br><span class="line">exports = &#123;&#125;</span><br><span class="line">exports.foo = <span class="string">'bar'</span></span><br><span class="line">module.exports.b=456</span><br></pre></td></tr></table></figure>
+
+<p>输出：a:123,b=456</p>
+<p>若foo.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">module.exports=<span class="string">'hello'</span></span><br><span class="line">exports.foo=<span class="string">'world'</span></span><br></pre></td></tr></table></figure>
+
+<p>输出：hello<br><strong>即 给exports赋值或者给module.exports赋值会断开exports与module.exports的引用 最后导出的是module.exports指向的内容</strong></p>
 
       
     </div>
