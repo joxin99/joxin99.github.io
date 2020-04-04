@@ -5,17 +5,20 @@
   
 
   
-  <title>Node.js学习笔记(二) | Joxin&#39;s Blog</title>
+  <title>Node.js学习笔记(三) | Joxin&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Node.js">
+  <meta name="description" content="一.Node中的模块系统1.使用Node编写应用程序主要就是在使用!EcmaScript语言  和浏览器不一样 Node中没有BOM 和 DOM核心模块  文件操作fs  http服务的http  url路径操作  path路径处理  os操作系统信息第三方模块  如art-template自己写的模块 2.什么是模块化文件作用域通信规则  加载require  导出 在 Node 中，每个模块内">
+<meta name="keywords" content="Node.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node.js学习笔记(二)">
+<meta property="og:title" content="Node.js学习笔记(三)">
 <meta property="og:url" content="http://yoursite.com/2020/04/01/node-js-3/index.html">
 <meta property="og:site_name" content="Joxin&#39;s Blog">
+<meta property="og:description" content="一.Node中的模块系统1.使用Node编写应用程序主要就是在使用!EcmaScript语言  和浏览器不一样 Node中没有BOM 和 DOM核心模块  文件操作fs  http服务的http  url路径操作  path路径处理  os操作系统信息第三方模块  如art-template自己写的模块 2.什么是模块化文件作用域通信规则  加载require  导出 在 Node 中，每个模块内">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-02T11:31:17.928Z">
+<meta property="og:updated_time" content="2020-04-04T10:14:37.326Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node.js学习笔记(二)">
+<meta name="twitter:title" content="Node.js学习笔记(三)">
+<meta name="twitter:description" content="一.Node中的模块系统1.使用Node编写应用程序主要就是在使用!EcmaScript语言  和浏览器不一样 Node中没有BOM 和 DOM核心模块  文件操作fs  http服务的http  url路径操作  path路径处理  os操作系统信息第三方模块  如art-template自己写的模块 2.什么是模块化文件作用域通信规则  加载require  导出 在 Node 中，每个模块内">
   
     <link rel="alternate" href="/atom.xml" title="Joxin&#39;s Blog" type="application/atom+xml">
   
@@ -76,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Node.js学习笔记(二)
+      Node.js学习笔记(三)
     </h1>
   
 
@@ -84,11 +87,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="一-Node中的模块系统"><a href="#一-Node中的模块系统" class="headerlink" title="一.Node中的模块系统"></a>一.Node中的模块系统</h1><h2 id="1-使用Node编写应用程序主要就是在使用"><a href="#1-使用Node编写应用程序主要就是在使用" class="headerlink" title="1.使用Node编写应用程序主要就是在使用"></a><strong>1.使用Node编写应用程序主要就是在使用</strong></h2><p><strong>!EcmaScript语言</strong><br>  和浏览器不一样 Node中没有BOM 和 DOM<br><strong>核心模块</strong><br>  文件操作fs<br>  http服务的http<br>  url路径操作<br>  path路径处理<br>  os操作系统信息<br><strong>第三方模块</strong><br>  如art-template<br><strong>自己写的模块</strong></p>
+<h2 id="2-什么是模块化"><a href="#2-什么是模块化" class="headerlink" title="2.什么是模块化"></a><strong>2.什么是模块化</strong></h2><p><strong>文件作用域</strong><br><strong>通信规则</strong><br>  加载require<br>  导出</p>
+<p>在 Node 中，每个模块内部都有一个自己的 module 对象<br>该 module 对象中，有一个成员叫：exports 也是一个对象<br>也就是说如果你需要对外导出成员，只需要把导出的成员挂载到 module.exports 中</p>
+<p>例如 main.js文件 </p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/01/node-js-3/" data-id="ck8ioiib700005dpfa7gaouhk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/01/node-js-3/" data-id="ck8lgn71b0000yppfdnbyou0b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
@@ -153,7 +160,7 @@
       <ul>
         
           <li>
-            <a href="/2020/04/01/node-js-3/">Node.js学习笔记(二)</a>
+            <a href="/2020/04/01/node-js-3/">Node.js学习笔记(三)</a>
           </li>
         
           <li>

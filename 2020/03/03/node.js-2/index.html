@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Joxin&#39;s Blog">
 <meta property="og:description" content="1.Node.js搭建一个类似Apache的服务器功能  -目录列表和部分类型文件的查看功能  1)如何得到某个目录(如：wwwDIR)列表中的文件名和目录名 fs.readdir  2)如何将得到的文件名和目录名替换到一个template.html中使得在浏览器中显示出来模板引擎  若不用模板引擎 在template.html中需要替换的位置预留一个特殊的标记  根据files生成需要的html">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-02T11:31:36.897Z">
+<meta property="og:updated_time" content="2020-04-04T09:33:50.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js学习笔记(二)">
 <meta name="twitter:description" content="1.Node.js搭建一个类似Apache的服务器功能  -目录列表和部分类型文件的查看功能  1)如何得到某个目录(如：wwwDIR)列表中的文件名和目录名 fs.readdir  2)如何将得到的文件名和目录名替换到一个template.html中使得在浏览器中显示出来模板引擎  若不用模板引擎 在template.html中需要替换的位置预留一个特殊的标记  根据files生成需要的html">
@@ -109,13 +109,13 @@
 <p>  action=”…” 就是表单提交的地址，说白了就是请求的 url 地址<br>  method=”…” 请求方法：get/post</p>
 <p>  如果跳转路径还没有具体处理 可能会跳转到404页面 在终端中进入node 输入url.parse(‘浏览器路径’,true) 可从路径中解析出query的内容和path等信息<br>  <strong>因此不能根据url路径判断处理该请求</strong><br>  我们主要想获取的是url解析出来的pathname和query<br>  我们已经使用 url 模块的 parse 方法把请求路径中的查询字符串给解析成一个对象了<br>  所以接下来要做的就是：<br>    1. 获取表单提交的数据 parseObj.query<br>    2. 将当前时间日期添加到数据对象中，然后存储到数组中<br>    3. 让用户重定向跳转到首页 /  当用户重新请求 / 的时候，我数组中的数据已经发生变化了，所以用户看到的页面也就变了</p>
 <p>  <strong>重定向</strong><br>  服务端这个时候已经把数据存储好了，接下来就是让用户重新请求 / 首页，就可以看到最新的留言内容了</p>
-<p>  如何通过服务器让客户端重定向？<br>    1. 状态码设置为 302 临时重定向  statusCode<br>    2. 在响应头中通过 Location 告诉客户端往哪儿重定向   setHeader<br>    如果客户端发现收到服务器的响应的状态码是 302 就会自动去响应头中找Location ，然后对该地址发起新的请求<br>    所以就能看到客户端自动跳转了</p>
+<p>  如何通过服务器让客户端重定向？<br>    1. 状态码statusCode设置为 302 临时重定向（每次修改了重定向页面后 都会更新跳转的页面）  （301是永久重定向 即记住浏览器缓存 一直跳转到设置跳转的页面）<br>    2. 在响应头中通过 Location 告诉客户端往哪儿重定向   setHeader<br>    如果客户端发现收到服务器的响应的状态码是 302 就会自动去响应头中找Location ，然后对该地址发起新的请求<br>    所以就能看到客户端自动跳转了</p>
 <p>  <strong>一次请求对应一次响应 本次响应结束后 请求也跟着结束 下次就是另一个请求 因为本质上url不同</strong></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/03/node.js-2/" data-id="ck8ioiibf00035dpfzffksfl1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/03/node.js-2/" data-id="ck8lgn71k0004yppfbswbalhn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
@@ -189,7 +189,7 @@
       <ul>
         
           <li>
-            <a href="/2020/04/01/node-js-3/">Node.js学习笔记(二)</a>
+            <a href="/2020/04/01/node-js-3/">Node.js学习笔记(三)</a>
           </li>
         
           <li>
